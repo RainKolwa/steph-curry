@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import App from './App'
 import configureStore from 'redux-mock-store'
+import App from './index'
 
 const mockStore = configureStore()
 

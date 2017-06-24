@@ -2,7 +2,7 @@ import React from 'react'
 import { Link } from 'react-router'
 import './style.styl'
 
-const MENUS = [
+const MENU_CONFIG = [
   {
     name: '学习',
     path: '/',
@@ -20,7 +20,7 @@ const MENUS = [
 const Menu = () => {
   return (
     <ul className="menu-main">
-      {MENUS.map(({ name, path }, index) => {
+      {MENU_CONFIG.map(({ name, path }, index) => {
         return (
           <li key={index}>
             <Link to={path}>{name}</Link>
