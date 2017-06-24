@@ -1,24 +1,18 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import './App.styl'
+import Menu from '../../components/Menu'
+import './style.styl'
 
 @connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
-class App extends Component {
-  static propTypes = {
-    children: PropTypes.node,
-  }
-
+class DashboardPage extends Component {
   render() {
-    const { children } = this.props
     return (
       <div>
-        <h1>hello fs</h1>
-        {children}
+        <Menu />
       </div>
     )
   }
 }
 
-export default App
+export default DashboardPage
