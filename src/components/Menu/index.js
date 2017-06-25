@@ -17,10 +17,11 @@ const MENU_CONFIG = [
   },
 ]
 
-const Menu = () => {
+const Menu = ({ items = MENU_CONFIG, type = 'main' }) => {
+  const containerClass = `menu-${type}`
   return (
-    <ul className="menu-main">
-      {MENU_CONFIG.map(({ name, path }, index) => {
+    <ul className={containerClass}>
+      {items.map(({ name, path }, index) => {
         return (
           <li key={index}>
             <Link to={path}>{name}</Link>
