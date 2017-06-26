@@ -1,0 +1,26 @@
+exports[`test renders correctly 1`] = `
+<ul
+  className="menu-main">
+  <li>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      学习
+    </a>
+  </li>
+  <li>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      课程
+    </a>
+  </li>
+  <li>
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      作业
+    </a>
+  </li>
+</ul>
+`;
