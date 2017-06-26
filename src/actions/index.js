@@ -1,31 +1,26 @@
 import { CALL_API } from '../middleware/api'
 import { Schemas } from '../middleware/schemas'
 
-export const STARRED_REQUEST = 'STARRED_REQUEST'
-export const STARRED_SUCCESS = 'STARRED_SUCCESS'
-export const STARRED_FAILURE = 'STARRED_FAILURE'
+export const LOAD_TASKS_REQUEST = 'LOAD_TASKS_REQUEST'
+export const LOAD_TASKS_SUCCESS = 'LOAD_TASKS_SUCCESS'
+export const LOAD_TASKS_FAILURE = 'LOAD_TASKS_FAILURE'
 
-// Fetches a page of starred repos by a particular user.
-// Relies on the custom API middleware defined in ../middleware/api.js.
-const fetchStarred = (login, nextPageUrl) => ({
-  login,
+const fetchTasks = (query, nextPageUrl) => ({
+  query,
   [CALL_API]: {
-    types: [STARRED_REQUEST, STARRED_SUCCESS, STARRED_FAILURE],
+    types: [LOAD_TASKS_REQUEST, LOAD_TASKS_SUCCESS, LOAD_TASKS_FAILURE],
     endpoint: nextPageUrl,
-    schema: Schemas.REPO_ARRAY,
+    schema: Schemas.TASK_ARRAY,
   },
 })
 
-// Fetches a page of starred repos by a particular user.
-// Bails out if page is cached and user didn't specifically request next page.
-// Relies on Redux Thunk middleware.
-export const loadStarred = (login, nextPage) => (dispatch, getState) => {
-  const { nextPageUrl = `users/${login}/starred`, pageCount = 0 } =
-    getState().pagination.starredByUser[login] || {}
+export const loadTasks = (query, nextPage) => (dispatch, getState) => {
+  const { nextPageUrl = `my/tasks`, pageCount = 0 } =
+    getState().pagination.tasks[query] || {}
 
   if (pageCount > 0 && !nextPage) {
     return null
   }
 
-  return dispatch(fetchStarred(login, nextPageUrl))
+  return dispatch(fetchTasks(query, nextPageUrl))
 }

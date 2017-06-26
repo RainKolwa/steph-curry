@@ -8,13 +8,11 @@ const userSchema = new schema.Entity(
   },
 )
 
-const repoSchema = new schema.Entity(
-  'repos',
+const taskSchema = new schema.Entity(
+  'tasks',
+  {},
   {
-    owner: userSchema,
-  },
-  {
-    idAttribute: repo => repo.fullName.toLowerCase(),
+    idAttribute: task => task.id,
   },
 )
 
@@ -22,6 +20,6 @@ const repoSchema = new schema.Entity(
 export const Schemas = {
   USER: userSchema,
   USER_ARRAY: [userSchema],
-  REPO: repoSchema,
-  REPO_ARRAY: [repoSchema],
+  REPO: taskSchema,
+  REPO_ARRAY: [taskSchema],
 }

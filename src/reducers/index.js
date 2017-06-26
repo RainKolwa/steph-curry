@@ -5,7 +5,7 @@ import merge from 'lodash/merge'
 import paginate from './paginate'
 import auth from './auth'
 
-const entities = (state = { users: {}, repos: {} }, action) => {
+const entities = (state = { users: {}, tasks: {} }, action) => {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities)
   }
@@ -14,12 +14,12 @@ const entities = (state = { users: {}, repos: {} }, action) => {
 }
 
 const pagination = combineReducers({
-  starredByUser: paginate({
+  tasks: paginate({
     mapActionToKey: action => action.login,
     types: [
-      ActionTypes.STARRED_REQUEST,
-      ActionTypes.STARRED_SUCCESS,
-      ActionTypes.STARRED_FAILURE,
+      ActionTypes.LOAD_TASKS_REQUEST,
+      ActionTypes.LOAD_TASKS_SUCCESS,
+      ActionTypes.LOAD_TASKS_FAILURE,
     ],
   }),
 })
