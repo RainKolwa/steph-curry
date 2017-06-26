@@ -1,0 +1,16 @@
+exports[`test renders correctly 1`] = `
+<div
+  className="task-item">
+  <span>
+    上课
+  </span>
+  <span>
+    人们如何帮助社区？
+  </span>
+  <div>
+    2
+    /
+    10
+  </div>
+</div>
+`;
