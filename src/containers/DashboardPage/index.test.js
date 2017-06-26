@@ -1,15 +1,10 @@
 import React from 'react'
-import { mount } from 'enzyme'
-import configureStore from 'redux-mock-store'
-import DashboardPage from './index'
-
-const mockStore = configureStore()
+import { shallow } from 'enzyme'
+import { DashboardPage } from './index'
 
 describe('<DashboardPage />', () => {
-  const getState = { auth: {} }
-  const store = mockStore(getState)
   it('should render div', () => {
-    const wrapper = mount(<DashboardPage store={store} />)
-    expect(wrapper.find('div')).toHaveLength(1)
+    const wrapper = shallow(<DashboardPage />)
+    expect(wrapper.find('.page-dashboard')).toHaveLength(1)
   })
 })
