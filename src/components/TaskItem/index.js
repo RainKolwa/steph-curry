@@ -6,7 +6,7 @@ const TaskItem = ({ task }) => {
   const { type, title, completed, total } = task
   return (
     <div className="task-item">
-      <span>{type}</span>
+      <span>{type}：</span>
       <span>{title}</span>
       <div>
         {completed}/{total}
