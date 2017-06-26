@@ -3,6 +3,7 @@ import { routerReducer as routing } from 'react-router-redux'
 import * as ActionTypes from '../actions'
 import merge from 'lodash/merge'
 import paginate from './paginate'
+import auth from './auth'
 
 const entities = (state = { users: {}, repos: {} }, action) => {
   if (action.response && action.response.entities) {
@@ -24,6 +25,7 @@ const pagination = combineReducers({
 })
 
 const rootReducer = combineReducers({
+  auth,
   entities,
   pagination,
   routing,

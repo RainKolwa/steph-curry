@@ -8,8 +8,8 @@ const mockStore = configureStore()
 describe('<App />', () => {
   const getState = {}
   const store = mockStore(getState)
-  it('should render h1', () => {
+  it('should render div', () => {
     const wrapper = mount(<App store={store} />)
-    expect(wrapper.find('h1')).toHaveLength(1)
+    expect(wrapper.find('div')).toHaveLength(1)
   })
 })
