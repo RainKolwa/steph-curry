@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router'
 import './style.styl'
 
@@ -30,6 +31,16 @@ const Menu = ({ items = MENU_CONFIG, type = 'main' }) => {
       })}
     </ul>
   )
+}
+
+Menu.propTypes = {
+  items: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      path: PropTypes.string.isRequired,
+    }),
+  ),
+  type: PropTypes.string,
 }
 
 export default Menu
