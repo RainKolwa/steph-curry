@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { Menu, UserHead } from '../../components'
 import './style.styl'
 
@@ -23,17 +22,7 @@ const UserCenterMenu = [
   },
 ]
 
-@connect(
-  state => {
-    const { user } = state.auth
-    return {
-      user,
-    }
-  },
-  dispatch => bindActionCreators({}, dispatch),
-)
-
-class UserCenterPage extends Component {
+export class UserCenterPage extends Component {
   render() {
     const { user } = this.props
 
@@ -46,4 +35,9 @@ class UserCenterPage extends Component {
   }
 }
 
-export default UserCenterPage
+export default connect(state => {
+  const { user } = state.auth
+  return {
+    user,
+  }
+})(UserCenterPage)
