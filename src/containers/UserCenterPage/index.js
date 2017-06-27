@@ -28,15 +28,15 @@ export class UserCenterPage extends Component {
     const { user } = this.props
 
     return (
-      <div>
+      <div className="page-user-center">
         {user && <UserHead user={user} />}
         <div className="menu-user-center">
-        {items.map(({name, path}, index) =>
-          <Link key={index} path={path}>
+        {UserCenterMenu.map(({name, path}, index) =>
+          <Link key={index} to={path}>
             {name}<span className="icon"></span>
           </Link>
         )}
-      </div>
+        </div>
       </div>
     )
   }

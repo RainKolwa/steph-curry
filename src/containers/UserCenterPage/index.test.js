@@ -10,6 +10,6 @@ describe('<UserCenterPage />', () => {
   const store = mockStore(getState)
   it('should render div', () => {
     const wrapper = mount(<UserCenterPage store={store} />)
-    expect(wrapper.find('div')).toHaveLength(1)
+    expect(wrapper.find('.page-user-center')).toHaveLength(1)
   })
 })
