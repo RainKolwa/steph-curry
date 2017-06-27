@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { Menu, UserHead } from '../../components'
 import TaskBoard from '../TaskBoard'
 import './style.styl'

@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
 import { TaskItem } from '../../components'
 import slice from 'lodash/slice'
 import './style.styl'
