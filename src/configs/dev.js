@@ -1,5 +1,5 @@
 const configs = {
-  api: 'https://test-api.xxjz.org/',
+  api: 'http://fs-api.dev.xxjz.org/',
 }
 
 export default configs
