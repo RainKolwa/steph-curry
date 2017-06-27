@@ -11,15 +11,16 @@ const callApi = (endpoint, data, method, headers) => {
     headers: headers || {
       Accept: 'application/json',
       'Content-Type': 'application/json',
+      'Fs-Request-From': 'student',
     },
     body: JSON.stringify(data),
   }).then(response =>
     response.json().then(json => {
-      if (!response.ok) {
+      if (json.code !== 0) {
         return Promise.reject(json)
       }
 
-      return Object.assign({}, json)
+      return json
     }),
   )
 }
@@ -56,12 +57,14 @@ export default store => next => action => {
           type: successType,
         }),
       ),
-    error =>
-      next(
+    error => {
+      console.log('stack', error.stack)
+      return next(
         actionWith({
           type: failureType,
           error: error.message || 'Something bad happened',
         }),
-      ),
+      )
+    },
   )
 }
