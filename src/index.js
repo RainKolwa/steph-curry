@@ -1,3 +1,4 @@
+import './assets/styles/normalize.styl'
 import React from 'react'
 import { render } from 'react-dom'
 import { browserHistory } from 'react-router'
