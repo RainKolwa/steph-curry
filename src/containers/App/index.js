@@ -1,11 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import SnackBar from '../SnackBar'
 import './style.styl'
 
-@connect(state => ({}), dispatch => bindActionCreators({}, dispatch))
-class App extends Component {
+export class App extends Component {
   static propTypes = {
     children: PropTypes.node,
   }
@@ -13,11 +12,12 @@ class App extends Component {
   render() {
     const { children } = this.props
     return (
-      <div>
+      <div className="container-app">
+        <SnackBar />
         {children}
       </div>
     )
   }
 }
 
-export default App
+export default connect(state => ({}))(App)

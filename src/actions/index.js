@@ -27,3 +27,15 @@ export const loadTasks = (query, nextPage) => (dispatch, getState) => {
 
   return dispatch(fetchTasks(query, nextPageUrl))
 }
+
+export const REMOVE_SNACK_MESSAGE = 'REMOVE_SNACK_MESSAGE'
+export const ADD_SNACK_MESSAGE = 'ADD_SNACK_MESSAGE'
+
+export const removeStackMessage = () => ({
+  type: REMOVE_SNACK_MESSAGE,
+})
+
+export const addStackMessage = data => ({
+  type: ADD_SNACK_MESSAGE,
+  data,
+})

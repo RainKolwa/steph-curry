@@ -1,0 +1,30 @@
+.snack-bar
+  position fixed
+  z-index 99
+  left 0
+  top 0
+  width 100%
+  ul
+    padding 0
+    margin 0
+    li
+      height 40px
+      line-height 40px
+      overflow hidden
+      padding-left 15px
+      margin-bottom 5px
+      color white
+      list-style-type none
+      background cadetblue
+      &.example-enter 
+        height 0
+      &.example-enter.example-enter-active 
+        height 40px
+        transition height .1s ease
+      &.example-leave 
+        height 40px
+      &.example-leave.example-leave-active 
+        opacity 0
+        transition opacity .2s ease
+      &.item-failure
+        background red

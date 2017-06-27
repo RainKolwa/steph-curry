@@ -1,15 +1,10 @@
 import React from 'react'
-import { mount } from 'enzyme'
-import configureStore from 'redux-mock-store'
-import App from './index'
-
-const mockStore = configureStore()
+import { shallow } from 'enzyme'
+import { App } from './index'
 
 describe('<App />', () => {
-  const getState = {}
-  const store = mockStore(getState)
   it('should render div', () => {
-    const wrapper = mount(<App store={store} />)
-    expect(wrapper.find('div')).toHaveLength(1)
+    const wrapper = shallow(<App />)
+    expect(wrapper.find('.container-app')).toHaveLength(1)
   })
 })
