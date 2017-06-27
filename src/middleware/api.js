@@ -1,5 +1,7 @@
 import { normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
+import configs from '../configs'
+const { api: API_ROOT } = configs
 
 // Extracts the next page URL from Github API response.
 const getNextPageUrl = response => {
@@ -15,8 +17,6 @@ const getNextPageUrl = response => {
 
   return nextLink.split(';')[0].slice(1, -1)
 }
-
-const API_ROOT = 'https://api.github.com/'
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
