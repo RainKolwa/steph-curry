@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import { Menu, UserHead } from '../../components'
+import { Link } from 'react-router'
+import { UserHead } from '../../components'
 import './style.styl'
 
 const UserCenterMenu = [
@@ -29,7 +30,13 @@ export class UserCenterPage extends Component {
     return (
       <div>
         {user && <UserHead user={user} />}
-        <Menu items={UserCenterMenu} type='UserCenter' />
+        <div className="menu-user-center">
+        {items.map(({name, path}, index) =>
+          <Link key={index} path={path}>
+            {name}<span className="icon"></span>
+          </Link>
+        )}
+      </div>
       </div>
     )
   }
