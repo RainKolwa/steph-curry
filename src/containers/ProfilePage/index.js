@@ -2,13 +2,6 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames'
 import './style.styl'
-import { isMobile } from '../../utils'
-import injectTapEventPlugin from 'react-tap-event-plugin'
-injectTapEventPlugin({
-  shouldRejectClick: function (lastTouchEventTimestamp, clickEventTimestamp) {
-    return isMobile();
-  }
-}, 1)
 
 const gradeOptions = ["学前","托班","幼儿园小班","幼儿园中班","幼儿园大班","一年级","二年级","三年级","四年级","五年级","六年级","七年级","八年级","九年级","十年级","十一年级","十二年级"]
 

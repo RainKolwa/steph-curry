@@ -1,15 +1,10 @@
 import React from 'react'
-import { mount } from 'enzyme'
-import configureStore from 'redux-mock-store'
-import ProfilePage from './index'
-
-const mockStore = configureStore()
+import { shallow } from 'enzyme'
+import { ProfilePage } from './index'
 
 describe('<ProfilePage />', () => {
-  const getState = { auth: {} }
-  const store = mockStore(getState)
   it('should render div', () => {
-    const wrapper = mount(<ProfilePage store={store} />)
+    const wrapper = shallow(<ProfilePage />)
     expect(wrapper.find('.page-profile')).toHaveLength(1)
   })
 })
