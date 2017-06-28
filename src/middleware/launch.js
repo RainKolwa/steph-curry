@@ -1,5 +1,5 @@
 import configs from '../configs'
-const { api: API_ROOT } = configs
+const { api: API_ROOT, requestFrom } = configs
 
 const callApi = (endpoint, data, method, headers) => {
   const fullUrl = endpoint.indexOf(API_ROOT) === -1
@@ -11,7 +11,7 @@ const callApi = (endpoint, data, method, headers) => {
     headers: headers || {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Fs-Request-From': 'student',
+      'Fs-Request-From': requestFrom,
     },
     body: JSON.stringify(data),
   }).then(response =>

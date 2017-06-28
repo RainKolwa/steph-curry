@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
 import configs from '../configs'
-const { api: API_ROOT } = configs
+const { api: API_ROOT, requestFrom } = configs
 
 // Extracts the next page URL from Github API response.
 const getNextPageUrl = response => {
@@ -20,12 +20,20 @@ const getNextPageUrl = response => {
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
-const callApi = (endpoint, schema) => {
+const callApi = (endpoint, schema, method, headers, data) => {
   const fullUrl = endpoint.indexOf(API_ROOT) === -1
     ? API_ROOT + endpoint
     : endpoint
 
-  return fetch(fullUrl).then(response =>
+  return fetch(fullUrl, {
+    method: method || 'get',
+    headers: headers || {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+      'Fs-Request-From': requestFrom,
+    },
+    body: JSON.stringify(data),
+  }).then(response =>
     response.json().then(json => {
       if (!response.ok) {
         return Promise.reject(json)
@@ -53,7 +61,7 @@ export default store => next => action => {
   }
 
   let { endpoint } = callAPI
-  const { schema, types } = callAPI
+  const { schema, types, method, headers, data } = callAPI
 
   if (typeof endpoint === 'function') {
     endpoint = endpoint(store.getState())
@@ -81,7 +89,7 @@ export default store => next => action => {
   const [requestType, successType, failureType] = types
   next(actionWith({ type: requestType }))
 
-  return callApi(endpoint, schema).then(
+  return callApi(endpoint, schema, method, headers, data).then(
     response =>
       next(
         actionWith({
