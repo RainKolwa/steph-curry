@@ -15,8 +15,6 @@ export class LoginPage extends Component {
     }
   }
 
-  componentDidMount() {}
-
   handleChange = (e, name) => {
     this.setState({
       [name]: e.target.value,
@@ -53,6 +51,7 @@ export class LoginPage extends Component {
       setItem('token', token)
       setItem('user', JSON.stringify(user))
       this.props.addStackMessage({ type: 'success', content: '登录成功' })
+      this.props.router.replace('/')
     }
   }
 
