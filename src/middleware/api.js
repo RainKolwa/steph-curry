@@ -31,6 +31,7 @@ const callApi = (endpoint, schema, method, headers, data) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'Fs-Request-From': requestFrom,
+      'fs-user-id': 1,
     },
     body: JSON.stringify(data),
   }).then(response =>
