@@ -1,2 +1,3 @@
 export * from './localStorage'
-export * from './validate'
+export * from './validation'
+export * from './data'
