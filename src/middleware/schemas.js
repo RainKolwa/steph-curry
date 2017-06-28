@@ -16,10 +16,19 @@ const taskSchema = new schema.Entity(
   },
 )
 
-// Schemas for Github API responses.
+const postSchema = new schema.Entity(
+  'posts',
+  {},
+  {
+    idAttribute: post => post.id,
+  },
+)
+
 export const Schemas = {
   USER: userSchema,
   USER_ARRAY: [userSchema],
-  REPO: taskSchema,
-  REPO_ARRAY: [taskSchema],
+  TASK: taskSchema,
+  TASK_ARRAY: [taskSchema],
+  POST: postSchema,
+  POST_ARRAY: [postSchema],
 }

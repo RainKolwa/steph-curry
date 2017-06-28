@@ -1,4 +1,5 @@
 export * from './user'
+export * from './post'
 
 import { CALL_API } from '../middleware/api'
 

@@ -2,6 +2,7 @@ import { normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
 import configs from '../configs'
 const { api: API_ROOT, requestFrom } = configs
+import { getItem } from '../utils'
 
 // Extracts the next page URL from Github API response.
 const getNextPageUrl = response => {
@@ -31,16 +32,17 @@ const callApi = (endpoint, schema, method, headers, data) => {
       Accept: 'application/json',
       'Content-Type': 'application/json',
       'Fs-Request-From': requestFrom,
+      Authorization: getItem('token'),
       'fs-user-id': 1,
     },
     body: JSON.stringify(data),
   }).then(response =>
     response.json().then(json => {
-      if (!response.ok) {
+      if (json.code !== 0) {
         return Promise.reject(json)
       }
 
-      const camelizedJson = camelizeKeys(json)
+      const camelizedJson = camelizeKeys(json.data)
       const nextPageUrl = getNextPageUrl(response)
 
       return Object.assign({}, normalize(camelizedJson, schema), {

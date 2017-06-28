@@ -7,7 +7,7 @@ import slice from 'lodash/slice'
 import paginate from './paginate'
 import auth from './auth'
 
-const entities = (state = { users: {}, tasks: {} }, action) => {
+const entities = (state = { users: {}, tasks: {}, posts: {} }, action) => {
   if (action.response && action.response.entities) {
     return merge({}, state, action.response.entities)
   }
@@ -40,6 +40,14 @@ const pagination = combineReducers({
       ActionTypes.LOAD_TASKS_REQUEST,
       ActionTypes.LOAD_TASKS_SUCCESS,
       ActionTypes.LOAD_TASKS_FAILURE,
+    ],
+  }),
+  allposts: paginate({
+    mapActionToKey: action => action.query,
+    types: [
+      ActionTypes.LOAD_POSTS_REQUEST,
+      ActionTypes.LOAD_POSTS_SUCCESS,
+      ActionTypes.LOAD_POSTS_FAILURE,
     ],
   }),
 })

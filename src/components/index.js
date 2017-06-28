@@ -1,3 +1,5 @@
 export Menu from './Menu'
 export UserHead from './UserHead'
 export TaskItem from './TaskItem'
+export Spinner from './Spinner'
+export RecommendItem from './RecommendItem'
