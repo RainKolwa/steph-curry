@@ -1,15 +1,17 @@
-import './assets/styles/normalize.styl'
-import React from 'react'
-import { render } from 'react-dom'
-import { browserHistory } from 'react-router'
-import { syncHistoryWithStore } from 'react-router-redux'
-import Root from './containers/Root'
-import configureStore from './store'
+import "./assets/styles/normalize.styl";
+import React from "react";
+import { render } from "react-dom";
+import { browserHistory } from "react-router";
+import { syncHistoryWithStore } from "react-router-redux";
+import Root from "./containers/Root";
+import configureStore from "./store";
+import * as injectTapEventPlugin from "react-tap-event-plugin";
 
-const store = configureStore()
-const history = syncHistoryWithStore(browserHistory, store)
+injectTapEventPlugin();
+const store = configureStore();
+const history = syncHistoryWithStore(browserHistory, store);
 
 render(
   <Root store={store} history={history} />,
-  document.getElementById('root'),
-)
+  document.getElementById("root")
+);
