@@ -2,14 +2,26 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import './style.styl'
 
-const UserHead = ({ user }) => {
-  const { name, avatar } = user
-  return (
-    <div className="user-head">
-      <img src={avatar} alt={name} />
-      <span>{name}</span>
-    </div>
-  )
+export class UserHead extends React.Component {
+  handleUserSelect = () => {
+    this.context.router.push('/my')
+  }
+
+  render() {
+    const { name, avatar } = this.props.user
+    return (
+      <div className="user-head">
+        <img
+          src={avatar}
+          alt={name}
+          onTouchTap={() => this.handleUserSelect()}
+        />
+        <span>
+          {name}
+        </span>
+      </div>
+    )
+  }
 }
 
 UserHead.propTypes = {
@@ -17,6 +29,10 @@ UserHead.propTypes = {
     name: PropTypes.string.isRequired,
     avatar: PropTypes.string.isRequired,
   }).isRequired,
+}
+
+UserHead.contextTypes = {
+  router: PropTypes.object.isRequired,
 }
 
 export default UserHead
