@@ -1,6 +1,3 @@
-const configs = {
-  api: 'http://fs-api.dev.xxjz.org/',
-  requestFrom: 'student',
-}
+const configs = {};
 
-export default configs
+export default configs;
