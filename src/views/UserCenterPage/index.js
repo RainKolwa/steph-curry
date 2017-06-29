@@ -6,20 +6,20 @@ import './style.styl'
 
 const UserCenterMenu = [
   {
-    name:'个人信息',
-    path:'/my/profile'
+    name: '个人信息',
+    path: '/my/profile',
   },
   {
-    name:'我的简历',
-    path:'/my/resume'
+    name: '我的简历',
+    path: '/my/resume',
   },
   {
-    name:'校长信箱',
-    path:'/feedback'
+    name: '校长信箱',
+    path: '/feedback',
   },
   {
-    name:'关于我们',
-    path:'/about'
+    name: '关于我们',
+    path: '/about',
   },
 ]
 
@@ -31,11 +31,12 @@ export class UserCenterPage extends Component {
       <div className="page-user-center">
         {user && <UserHead user={user} />}
         <div className="menu-user-center">
-        {UserCenterMenu.map(({name, path}, index) =>
-          <Link key={index} to={path}>
-            {name}<span className="icon"></span>
-          </Link>
-        )}
+          {UserCenterMenu.map(({ name, path }, index) =>
+            <Link key={index} to={path}>
+              {name}
+              <span className="icon" />
+            </Link>
+          )}
         </div>
       </div>
     )

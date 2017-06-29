@@ -1,0 +1,5 @@
+export DashboardPage from './DashboardPage'
+export UserCenterPage from './UserCenterPage'
+export ProfilePage from './ProfilePage'
+export LoginPage from './LoginPage'
+export AboutUsPage from './AboutUsPage'

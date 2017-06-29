@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Menu, UserHead, RecommendItem } from '../../components'
-import TaskBoard from '../TaskBoard'
-import PostList from '../PostList'
+import TaskBoard from '../../containers/TaskBoard'
+import PostList from '../../containers/PostList'
 import './style.styl'
 
 export class DashboardPage extends Component {

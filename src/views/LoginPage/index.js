@@ -90,5 +90,5 @@ export default connect(
     }
   },
   dispatch =>
-    bindActionCreators({ loginUser, getSmsCode, addStackMessage }, dispatch),
+    bindActionCreators({ loginUser, getSmsCode, addStackMessage }, dispatch)
 )(LoginPage)

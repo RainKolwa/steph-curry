@@ -1,7 +1,13 @@
 import React from 'react'
 import { Route, IndexRoute } from 'react-router'
 import { App } from './containers'
-import { DashboardPage, UserCenterPage, LoginPage, ProfilePage, AboutUsPage } from './containers/'
+import {
+  DashboardPage,
+  UserCenterPage,
+  LoginPage,
+  ProfilePage,
+  AboutUsPage,
+} from './views'
 
 export default (
   <Route path="/" component={App}>
