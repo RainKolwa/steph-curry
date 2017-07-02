@@ -5,7 +5,7 @@ import merge from 'lodash/merge'
 import concat from 'lodash/concat'
 import slice from 'lodash/slice'
 import paginate from './paginate'
-import auth from './auth'
+import result from './result'
 
 const entities = (state = { users: {}, tasks: {}, posts: {} }, action) => {
   if (action.response && action.response.entities) {
@@ -26,7 +26,7 @@ const snackMessages = (state = [], action) => {
   } else if (error) {
     return concat(
       { type: 'failure', content: error, createdAt: +new Date() },
-      state,
+      state
     )
   }
 
@@ -42,18 +42,10 @@ const pagination = combineReducers({
       ActionTypes.LOAD_TASKS_FAILURE,
     ],
   }),
-  allposts: paginate({
-    mapActionToKey: action => action.query,
-    types: [
-      ActionTypes.LOAD_POSTS_REQUEST,
-      ActionTypes.LOAD_POSTS_SUCCESS,
-      ActionTypes.LOAD_POSTS_FAILURE,
-    ],
-  }),
 })
 
 const rootReducer = combineReducers({
-  auth,
+  result,
   snackMessages,
   entities,
   pagination,

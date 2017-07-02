@@ -1,12 +1,11 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { loginUser, getSmsCode, addStackMessage } from '../../actions'
-import { isMobile, setItem } from '../../utils'
-import get from 'lodash/get'
+import { LoadResult, getSmsCode, addStackMessage } from '../../actions'
+import { isMobile } from '../../utils'
 import './style.styl'
 
-export class LoginPage extends Component {
+export class ResultPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -44,21 +43,21 @@ export class LoginPage extends Component {
       mobile,
       code,
     }
-    const res = await this.props.loginUser(data)
+    const res = await this.props.LoadResult(data)
     if (res.type === 'LOGIN_IN_SUCCESS') {
-      const user = get(res, 'response.data')
-      const token = user.token
-      setItem('token', token)
-      setItem('user', JSON.stringify(user))
+      // const user = get(res, 'response.data')
+      // const token = user.token
+      // setItem('token', token)
+      // setItem('user', JSON.stringify(user))
       this.props.addStackMessage({ type: 'success', content: '登录成功' })
-      this.props.router.replace('/')
+      // this.props.router.replace('/')
     }
   }
 
   render() {
     const { mobile, code } = this.state
     return (
-      <div className="page-login">
+      <div className="page-result">
         <input
           type="number"
           value={mobile}
@@ -76,7 +75,7 @@ export class LoginPage extends Component {
           <button onClick={this.handleRequestCode}>获取短信验证码</button>
         </div>
         <br />
-        <button onClick={this.handleLogin}>登录</button>
+        <button onClick={this.handleLogin}>提交</button>
       </div>
     )
   }
@@ -90,5 +89,5 @@ export default connect(
     }
   },
   dispatch =>
-    bindActionCreators({ loginUser, getSmsCode, addStackMessage }, dispatch),
-)(LoginPage)
+    bindActionCreators({ LoadResult, getSmsCode, addStackMessage }, dispatch)
+)(ResultPage)
