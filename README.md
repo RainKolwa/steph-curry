@@ -1,4 +1,4 @@
-# fs-student
+# nba
 
 ### 配置 `cp .env.example .env`
 
