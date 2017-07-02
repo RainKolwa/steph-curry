@@ -1,7 +1,5 @@
 import { normalize } from 'normalizr'
 import { camelizeKeys } from 'humps'
-import { getItem } from '../utils'
-console.log(process.env.REACT_APP_API_ROOT)
 const apiRoot = process.env.REACT_APP_API_ROOT
 
 // Extracts the next page URL from Github API response.
@@ -30,9 +28,6 @@ const callApi = (endpoint, schema, method, headers, data) => {
     headers: headers || {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Fs-Request-From': process.env.REACT_APP_REQUEST_FROM,
-      Authorization: getItem('token'),
-      'fs-user-id': 1,
     },
     body: JSON.stringify(data),
   }).then(response =>

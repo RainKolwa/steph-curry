@@ -9,7 +9,6 @@ const callApi = (endpoint, data, method, headers) => {
     headers: headers || {
       Accept: 'application/json',
       'Content-Type': 'application/json',
-      'Fs-Request-From': process.env.REACT_APP_REQUEST_FROM,
     },
     body: JSON.stringify(data),
   }).then(response =>
