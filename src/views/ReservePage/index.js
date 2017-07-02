@@ -20,7 +20,9 @@ export class ReservePage extends Component {
     const { players } = this.state
     return (
       <div className="page-reserve">
-        <p>reserve page</p>
+        <p>
+          reserve page {players.join(',')}
+        </p>
         <button onTouchTap={() => this.handleReserve()}>提交</button>
       </div>
     )
@@ -28,11 +30,6 @@ export class ReservePage extends Component {
 }
 
 export default connect(
-  state => {
-    const { user } = state.auth
-    return {
-      user,
-    }
-  },
+  state => ({}),
   dispatch => bindActionCreators({ submitReservation }, dispatch)
 )(ReservePage)

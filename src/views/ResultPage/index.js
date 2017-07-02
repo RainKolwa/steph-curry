@@ -82,12 +82,7 @@ export class ResultPage extends Component {
 }
 
 export default connect(
-  state => {
-    const { user } = state.auth
-    return {
-      user,
-    }
-  },
+  state => ({}),
   dispatch =>
     bindActionCreators({ LoadResult, getSmsCode, addStackMessage }, dispatch)
 )(ResultPage)

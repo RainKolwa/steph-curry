@@ -4,7 +4,6 @@ import * as ActionTypes from '../actions'
 import merge from 'lodash/merge'
 import concat from 'lodash/concat'
 import slice from 'lodash/slice'
-import paginate from './paginate'
 import result from './result'
 
 const entities = (state = { users: {}, tasks: {}, posts: {} }, action) => {
@@ -33,22 +32,10 @@ const snackMessages = (state = [], action) => {
   return state
 }
 
-const pagination = combineReducers({
-  tasks: paginate({
-    mapActionToKey: action => action.login,
-    types: [
-      ActionTypes.LOAD_TASKS_REQUEST,
-      ActionTypes.LOAD_TASKS_SUCCESS,
-      ActionTypes.LOAD_TASKS_FAILURE,
-    ],
-  }),
-})
-
 const rootReducer = combineReducers({
   result,
   snackMessages,
   entities,
-  pagination,
   routing,
 })
 
