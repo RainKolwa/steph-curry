@@ -1,3 +1,34 @@
-const configs = {};
+const configs = {
+  preloads: [
+    'bg-home.jpg',
+    'bg-option-blue.jpg',
+    'bg-option-red.jpg',
+    'bg-ticket-blue.png',
+    'bg-ticket-red.png',
+    'bg.jpg',
+    'btn-txt-about.png',
+    'btn-txt-confirm-submit.png',
+    'btn-txt-confirm.png',
+    'btn-txt-failure.png',
+    'btn-txt-go.png',
+    'btn-txt-submit.png',
+    'icon-close.png',
+    'icon-man.png',
+    'icon-nba.png',
+    'icon-pencil.png',
+    'icon-plus.png',
+    'icon-triangle.png',
+    'logo.png',
+    'qrcode.jpg',
+    'subtitle.png',
+    'text-congrat.png',
+    'text-player-1.png',
+    'text-player-2.png',
+    'text-player-main.png',
+    'text-success.png',
+    'title-about.png',
+    'title.png',
+  ],
+}
 
-export default configs;
+export default configs

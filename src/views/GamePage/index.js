@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import { TimelineMax } from 'gsap'
 import { PopUp } from '../../components'
 
 export default class GamePage extends Component {
