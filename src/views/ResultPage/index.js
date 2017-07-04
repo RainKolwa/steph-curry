@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { LoadResult, getSmsCode, addStackMessage } from '../../actions'
+import { Tick } from '../../components'
 import { isMobile } from '../../utils'
 import './style.styl'
 
@@ -11,6 +12,7 @@ export class ResultPage extends Component {
     this.state = {
       mobile: '',
       code: '',
+      showTick: false,
     }
   }
 
@@ -31,6 +33,7 @@ export class ResultPage extends Component {
     const res = await this.props.getSmsCode(data)
     if (res.type === 'SMS_CODE_SUCCESS') {
       this.props.addStackMessage({ type: 'success', content: '短信验证码发送成功' })
+      this.startTick()
     }
   }
 
@@ -54,8 +57,20 @@ export class ResultPage extends Component {
     }
   }
 
+  startTick() {
+    this.setState({
+      showTick: true,
+    })
+  }
+
+  endTick() {
+    this.setState({
+      showTick: false,
+    })
+  }
+
   render() {
-    const { mobile, code } = this.state
+    const { mobile, code, showTick } = this.state
     return (
       <div className="page-result">
         <input
@@ -72,7 +87,9 @@ export class ResultPage extends Component {
             onChange={e => this.handleChange(e, 'code')}
             placeholder="验证码"
           />
-          <button onClick={this.handleRequestCode}>获取短信验证码</button>
+          {showTick
+            ? <Tick count={10} onFinished={() => this.endTick()} />
+            : <button onClick={this.handleRequestCode}>获取短信验证码</button>}
         </div>
         <br />
         <button onClick={this.handleLogin}>提交</button>
