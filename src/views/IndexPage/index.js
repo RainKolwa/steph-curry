@@ -13,19 +13,33 @@ class IndexPage extends Component {
         <Logo />
         <Title />
         <SubTitle />
-        <dl>
-          <dt>活动时间</dt>
-          <dd>2017年7月22日（星期六）14:00</dd>
-          <dt>活动地点</dt>
-          <dd>
-            北京工业大学体育馆<br />（北京市朝阳区平乐园100号北工大院内）
-          </dd>
-        </dl>
+        <ul>
+          <li>
+            <span className="icon-basketball" />
+            2017 Jr. NBA夏令营-库里训练日
+          </li>
+          <li>
+            <span className="icon-calendar" />
+            2017年7月22日（星期六）14:00
+          </li>
+          <li>
+            <span className="icon-location" />
+            北京工业大学体育馆（北京市朝阳区平乐园100号北工大院内）
+          </li>
+          <li>
+            <span className="icon-warning" />
+            本次活动一人一票,凭票入场
+          </li>
+        </ul>
         <div className="entry">
           <Button text={'前往预约'} OnClick={() => this.handleClick()}>
             前往预约
           </Button>
-          <p>想见库里吗？点击预约，马上抢票吧</p>
+          <div className="total">
+            目前已<span>1</span>
+            <span>1</span>
+            <span>1</span>人报名
+          </div>
         </div>
       </div>
     )

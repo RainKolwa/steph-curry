@@ -2,35 +2,67 @@
 
 .page-home
   background url('../../assets/images/bg-home.jpg') center top no-repeat
-  background-size cover
+  background-size 100% auto
   .logo
     margin-top 1.66rem
   .title, .subtitle
     position absolute
   .title
-    left .92rem
-    top 3.56rem
-    width 5.66rem
-    height 2.17rem
+    left .48rem
+    top 3.4rem
+    width 6.65rem
+    height 1.72rem
     background url(../../assets/images/title.png) no-repeat
     background-size contain
   .subtitle
-    left .93rem
-    top 2.56rem
-    width 5.63rem
-    height 1.37rem
+    left .48rem
+    top 2.44rem
+    width 6.6rem
+    height 1.46rem
     background url(../../assets/images/subtitle.png) no-repeat
     background-size contain
   .entry
     text-align center
-    p
-      font-size .17rem
-  dl
-    margin-top 4.7rem
-    text-align center
-    dt
-      font-size .25rem
-      color secondaryTextColor
-    dd
-      font-size .23rem
+    .button
+      margin .46rem auto .3rem
+    .total
       color textColor
+      display flex
+      align-items center
+      justify-content center
+      span
+        width .32rem
+        height .32rem
+        margin 0 .07rem
+        text-align center
+        line-height .32rem
+        border 2px solid #116ebe 
+  ul
+    width 4.34rem
+    margin 4.7rem auto 0
+    li
+      position relative
+      list-style-type none
+      color textColor
+      padding-left .48rem
+      line-height .34rem
+      margin 0 auto .16rem
+      padding-top .06rem
+      span
+        position absolute
+        left -.62rem+.46rem
+        top 0
+        width .46rem
+        height .46rem
+        &.icon-basketball
+          background url(../../assets/images/icon-basketball.png) no-repeat
+          background-size cover
+        &.icon-calendar
+          background url(../../assets/images/icon-calendar.png) no-repeat
+          background-size cover
+        &.icon-location
+          background url(../../assets/images/icon-location.png) no-repeat
+          background-size cover
+        &.icon-warning
+          background url(../../assets/images/icon-warning.png) no-repeat
+          background-size cover
