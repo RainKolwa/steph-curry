@@ -1,0 +1,61 @@
+@import '../../assets/styles/variables'
+
+.form-container
+  position absolute
+  width 6.6rem
+  height 9.67rem
+  left 50%
+  top 50%
+  margin-top (-1/2)*9.67rem
+  margin-left (-1/2)*6.6rem
+  transform scale(0)
+  transition all .2s
+  &.form-container-active
+    transform scale(1)
+  .button-blue
+    width 1.8rem
+    height .6rem
+    background accent1Color
+    display flex
+    justify-content center
+    align-items center
+    margin 0 auto
+    img
+      width .55rem
+      height .39rem
+  .context
+    height 6.44rem
+    background #fff
+    .button-blue
+      margin-top .57rem
+    ul
+      display flex
+      justify-content center
+      align-items center
+      flex-direction column
+      padding-top .5rem
+      li
+        list-style-type none
+        margin-bottom .23rem
+        &:last-child
+          margin-bottom 0
+        label
+          text-align right
+          margin-right .3rem
+        select
+          -webkit-appearance none
+          -moz-appearance none
+          -ms-appearance none
+          appearance none
+          outline none
+          border none
+          border-radius 0
+          background white
+          padding-right 0
+        select, input
+          box-sizing border-box
+          width 4.51rem
+          height .65rem
+          border 1px solid borderColor
+          outline none
+          padding-left .2rem

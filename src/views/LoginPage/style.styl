@@ -1,0 +1,60 @@
+@import '../../assets/styles/variables'
+
+.page-login
+  background url('../../assets/images/bg-home.jpg') center top no-repeat
+  background-size 100% auto
+  .logo
+    margin-top 1.46rem
+  .title, .subtitle
+    position absolute
+  .title
+    left 50%
+    margin-left -(1/2)*4.69rem
+    top 2.16rem
+    width 4.69rem
+    height 2.59rem
+    background url(../../assets/images/title-2.png) no-repeat
+    background-size contain
+  .subtitle
+    left 50%
+    margin-left -(1/2)*2.74rem
+    top 4.5rem
+    width 2.74rem
+    height 1.01rem
+    background url(../../assets/images/subtitle-2.png) no-repeat
+    background-size contain
+  .login-container
+    width 5.58rem
+    margin 5.1rem auto 0
+    .button
+      margin-top .77rem
+    p
+      color textColor
+      font-size .25rem
+      padding-left 1rem
+  div.login-item
+    display flex
+    justify-content center
+    align-items center
+    margin-bottom .22rem
+    label
+      flex none
+      width 1rem
+      color secondaryTextColor
+    input
+      flex 1
+      margin-right 0
+      outline none
+      padding-left .2rem
+      color secondaryTextColor
+    input, .button-code
+      box-sizing border-box
+      height .65rem
+      border 1px solid textColor
+      background transparent
+    .button-code
+      width 1.7rem
+      color textColor
+      line-height .65rem
+      margin-left .07rem
+      text-align center

@@ -1,0 +1,38 @@
+@import '../../assets/styles/variables'
+
+.container-ticket
+  .desc
+    margin-top 1rem
+  .desc-fail
+    li
+      margin-bottom .5rem
+  p, li
+    color textColor
+    line-height 1.6
+  p
+    margin .5rem .88rem 0
+  ul
+    text-align center
+    li
+      list-style-type none
+  .flag
+    width 3.87rem
+    height 1.29rem
+    margin 0 auto
+    &.flag-success
+      background url(../../assets/images/flag-success.png) no-repeat
+      background-size contain
+    &.flag-failure
+      background url(../../assets/images/flag-failure.png) no-repeat
+      background-size contain
+  .msg
+    width 5.63rem
+    height 2.36rem
+    margin 0 auto
+    &.msg-success
+      background url(../../assets/images/text-success.png) no-repeat
+      background-size contain
+    &.msg-failure
+      background url(../../assets/images/text-failure.png) no-repeat
+      background-size contain
+    

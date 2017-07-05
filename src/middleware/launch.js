@@ -6,10 +6,7 @@ const callApi = (endpoint, data, method, headers) => {
 
   return fetch(fullUrl, {
     method,
-    headers: headers || {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
+    headers: headers,
     body: JSON.stringify(data),
   }).then(response =>
     response.json().then(json => {
@@ -55,11 +52,11 @@ export default store => next => action => {
         })
       ),
     error => {
-      console.log('stack', error.stack)
+      console.log('error', error)
       return next(
         actionWith({
           type: failureType,
-          error: error.msg || 'Something bad happened',
+          error: error.message || 'Something bad happened',
         })
       )
     }

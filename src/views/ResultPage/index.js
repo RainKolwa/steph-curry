@@ -1,93 +1,192 @@
 import React, { Component } from 'react'
+import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { LoadResult, getSmsCode, addStackMessage } from '../../actions'
-import { isMobile } from '../../utils'
+import { submitAdditional } from '../../actions'
+import { PopUp, Logo, Button, Form, Pandora } from '../../components'
 import './style.styl'
+
+const schema = {
+  name: {
+    type: 'string',
+    label: '姓名',
+  },
+  mobile: {
+    type: 'string',
+    label: '电话',
+  },
+  backup_mobile: {
+    type: 'string',
+    label: '备用电话',
+  },
+  certificate: {
+    type: 'string',
+    label: '身份证/护照',
+  },
+}
 
 export class ResultPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      mobile: '',
-      code: '',
+      players: {
+        captain: {
+          name: '',
+          mobile: '',
+          backup_mobile: '',
+          certificate: '',
+        },
+        member1: {
+          name: '',
+          mobile: '',
+          backup_mobile: '',
+          certificate: '',
+        },
+        member2: {
+          name: '',
+          mobile: '',
+          backup_mobile: '',
+          certificate: '',
+        },
+      },
+      showForm: false,
+      showSubmitSuccess: false,
+      activePlayer: 'captain',
     }
   }
 
-  handleChange = (e, name) => {
+  handleSubmit = () => {
+    console.log('submiting')
+    console.log(this.state.players)
+    this.showSubmitSuccess()
+  }
+
+  showForm = () => {
     this.setState({
-      [name]: e.target.value,
+      showForm: true,
     })
   }
 
-  handleRequestCode = async () => {
-    const { mobile } = this.state
-    // verify mobile
-    if (!isMobile(mobile)) return
-    const data = {
-      type: 'signIn',
-      mobile: mobile,
-    }
-    const res = await this.props.getSmsCode(data)
-    if (res.type === 'SMS_CODE_SUCCESS') {
-      this.props.addStackMessage({ type: 'success', content: '短信验证码发送成功' })
-    }
+  hideForm = () => {
+    this.setState({
+      showForm: false,
+    })
   }
 
-  handleLogin = async () => {
-    const { mobile, code } = this.state
-    // verify code & mobile
-    if (!isMobile(mobile)) return
-    if (!code) return
-    const data = {
-      mobile,
-      code,
-    }
-    const res = await this.props.LoadResult(data)
-    if (res.type === 'LOGIN_IN_SUCCESS') {
-      // const user = get(res, 'response.data')
-      // const token = user.token
-      // setItem('token', token)
-      // setItem('user', JSON.stringify(user))
-      this.props.addStackMessage({ type: 'success', content: '登录成功' })
-      // this.props.router.replace('/')
-    }
+  showSubmitSuccess = () => {
+    this.setState({
+      showSubmitSuccess: true,
+    })
+  }
+
+  hideSubmitSuccess = () => {
+    this.setState({
+      showSubmitSuccess: false,
+    })
+  }
+
+  activate = type => {
+    this.setState({
+      showForm: true,
+      activePlayer: type,
+    })
+  }
+
+  handleFormItemChange = e => {
+    const value = e.target.value
+    const name = e.target.name
+    const { activePlayer } = this.state
+    this.setState({
+      players: {
+        ...this.state.players,
+        ...{
+          [activePlayer]: {
+            ...this.state.players[activePlayer],
+            ...{
+              [name]: value,
+            },
+          },
+        },
+      },
+    })
   }
 
   render() {
-    const { mobile, code } = this.state
+    const { players, activePlayer } = this.state
+    const player = players[activePlayer]
     return (
-      <div className="page-result">
-        <input
-          type="number"
-          value={mobile}
-          onChange={e => this.handleChange(e, 'mobile')}
-          placeholder="手机号"
-        />
-        <br />
-        <div>
-          <input
-            type="text"
-            value={code}
-            onChange={e => this.handleChange(e, 'code')}
-            placeholder="验证码"
-          />
-          <button onClick={this.handleRequestCode}>获取短信验证码</button>
+      <div className="page-result page-container">
+        <Logo />
+        <div className="result-form">
+          <header>
+            <img
+              src={require('../../assets/images/text-congrat.png')}
+              alt="恭喜您获得活动门票"
+            />
+          </header>
+          <p>请填写如下信息</p>
+          <div className="players-list">
+            <AdditionalPlayer
+              type="captain"
+              player={this.state.players['captain']}
+              OnClick={() => this.activate('captain')}
+            />
+            <AdditionalPlayer
+              type="member1"
+              player={this.state.players['member1']}
+              OnClick={() => this.activate('member1')}
+            />
+            <AdditionalPlayer
+              type="member2"
+              player={this.state.players['member2']}
+              OnClick={() => this.activate('member2')}
+            />
+          </div>
+          <Button text={'确认提交'} OnClick={() => this.handleSubmit()} />
         </div>
-        <br />
-        <button onClick={this.handleLogin}>提交</button>
+        <Form
+          className="form-result-pop"
+          schema={schema}
+          inVisible={this.state.showForm}
+          player={player}
+          type={activePlayer}
+          OnClose={() => this.hideForm()}
+          handleFormItemChange={this.handleFormItemChange}
+        />
+        <PopUp
+          closeBtn
+          inVision={this.state.showSubmitSuccess}
+          onHide={this.hideSubmitSuccess}
+        >
+          <Pandora type="failure" />
+        </PopUp>
       </div>
     )
   }
 }
 
+const AdditionalPlayer = ({ player, type, OnClick }) => {
+  const playerStyle = classNames(
+    'additional-player-bar',
+    `additional-player-bar-${type}`
+  )
+  return (
+    <div className={playerStyle} onTouchTap={() => OnClick()}>
+      <ul>
+        {Object.keys(schema).map((key, index) => {
+          const item = schema[key]
+          return (
+            <li key={index}>
+              {item.label}：{player[key]}
+            </li>
+          )
+        })}
+      </ul>
+    </div>
+  )
+}
+
 export default connect(
-  state => {
-    const { user } = state.auth
-    return {
-      user,
-    }
-  },
-  dispatch =>
-    bindActionCreators({ LoadResult, getSmsCode, addStackMessage }, dispatch)
+  state => ({}),
+  dispatch => bindActionCreators({ submitAdditional }, dispatch)
 )(ResultPage)

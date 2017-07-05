@@ -1,4 +1,26 @@
 import { LAUNCH_API } from '../middleware/launch'
+import { isWechat } from '../utils'
+
+// 参与人数
+export const LOAD_PARTICIPANTS_REQUEST = 'LOAD_PARTICIPANTS_REQUEST'
+export const LOAD_PARTICIPANTS_SUCCESS = 'LOAD_PARTICIPANTS_SUCCESS'
+export const LOAD_PARTICIPANTS_FAILURE = 'LOAD_PARTICIPANTS_FAILURE'
+
+const fetchParticipants = () => ({
+  [LAUNCH_API]: {
+    types: [
+      LOAD_PARTICIPANTS_REQUEST,
+      LOAD_PARTICIPANTS_SUCCESS,
+      LOAD_PARTICIPANTS_FAILURE,
+    ],
+    endpoint: '?act=ordercount',
+    method: 'get',
+  },
+})
+
+export const loadParticipants = () => dispatch => {
+  return dispatch(fetchParticipants())
+}
 
 // 预约
 export const SUBMIT_RESERVE_REQUEST = 'SUBMIT_RESERVE_REQUEST'
@@ -12,9 +34,12 @@ const handleSubmitReservation = data => ({
       SUBMIT_RESERVE_SUCCESS,
       SUBMIT_RESERVE_FAILURE,
     ],
-    endpoint: 'reserve',
+    endpoint: '?act=order',
     method: 'post',
-    data: data,
+    data: {
+      ...{ plat: isWechat() ? 'wx' : 'wb' },
+      ...data,
+    },
   },
 })
 
@@ -56,6 +81,28 @@ const fetchResult = data => ({
 
 export const LoadResult = data => dispatch => {
   return dispatch(fetchResult(data))
+}
+
+// 补充信息
+export const SUBMIT_ADDITIONAL_REQUEST = 'SUBMIT_ADDITIONAL_REQUEST'
+export const SUBMIT_ADDITIONAL_SUCCESS = 'SUBMIT_ADDITIONAL_SUCCESS'
+export const SUBMIT_ADDITIONAL_FAILURE = 'SUBMIT_ADDITIONAL_FAILURE'
+
+const handleSubmitAdditional = data => ({
+  [LAUNCH_API]: {
+    types: [
+      SUBMIT_ADDITIONAL_REQUEST,
+      SUBMIT_ADDITIONAL_SUCCESS,
+      SUBMIT_ADDITIONAL_FAILURE,
+    ],
+    endpoint: 'reserve',
+    method: 'post',
+    data: data,
+  },
+})
+
+export const submitAdditional = data => dispatch => {
+  return dispatch(handleSubmitAdditional(data))
 }
 
 // 提示信息

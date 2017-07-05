@@ -1,3 +1,5 @@
-const configs = {};
+const configs = {
+  preloads: ['bg-home.jpg', 'title.png'],
+}
 
-export default configs;
+export default configs
