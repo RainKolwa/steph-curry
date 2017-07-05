@@ -3,7 +3,7 @@ import classNames from 'classnames'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { submitAdditional } from '../../actions'
-import { PopUp, Logo, Button, Form } from '../../components'
+import { PopUp, Logo, Button, Form, Pandora } from '../../components'
 import './style.styl'
 
 const schema = {
@@ -79,6 +79,12 @@ export class ResultPage extends Component {
     })
   }
 
+  hideSubmitSuccess = () => {
+    this.setState({
+      showSubmitSuccess: false,
+    })
+  }
+
   activate = type => {
     this.setState({
       showForm: true,
@@ -147,8 +153,12 @@ export class ResultPage extends Component {
           OnClose={() => this.hideForm()}
           handleFormItemChange={this.handleFormItemChange}
         />
-        <PopUp closeBtn={false} inVision={this.state.showSubmitSuccess}>
-          <h1>信息提交车更浓更难过</h1>
+        <PopUp
+          closeBtn
+          inVision={this.state.showSubmitSuccess}
+          onHide={this.hideSubmitSuccess}
+        >
+          <Pandora type="failure" />
         </PopUp>
       </div>
     )

@@ -14,7 +14,8 @@ class PopUp extends React.Component {
     return (
       <div className={containerStyle}>
         {this.props.children}
-        {closeBtn && <span onTouchTap={() => onHide()}>x</span>}
+        {closeBtn &&
+          <span className="icon-close" onTouchTap={() => onHide()} />}
       </div>
     )
   }
