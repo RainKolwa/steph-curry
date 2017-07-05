@@ -7,6 +7,7 @@ import './style.styl'
 class Form extends Component {
   render() {
     const {
+      className,
       schema,
       inVisible,
       player,
@@ -17,6 +18,7 @@ class Form extends Component {
     const FormStyles = classNames({
       'form-container': true,
       'form-container-active': inVisible,
+      [className]: !!className,
     })
     return (
       <div className={FormStyles}>
@@ -27,7 +29,7 @@ class Form extends Component {
               const item = schema[key]
               return (
                 <li key={index}>
-                  <label htmlFor="">
+                  <label htmlFor={key}>
                     {item.label}
                   </label>
                   {item.type === 'string' &&

@@ -21,7 +21,7 @@ const schema = {
   },
   certificate: {
     type: 'string',
-    label: '身份证／护照',
+    label: '身份证/护照',
   },
 }
 
@@ -33,14 +33,20 @@ export class ResultPage extends Component {
         captain: {
           name: '',
           mobile: '',
+          backup_mobile: '',
+          certificate: '',
         },
         member1: {
           name: '',
           mobile: '',
+          backup_mobile: '',
+          certificate: '',
         },
         member2: {
           name: '',
           mobile: '',
+          backup_mobile: '',
+          certificate: '',
         },
       },
       showForm: false,
@@ -116,20 +122,24 @@ export class ResultPage extends Component {
           <div className="players-list">
             <AdditionalPlayer
               type="captain"
+              player={this.state.players['captain']}
               OnClick={() => this.activate('captain')}
             />
             <AdditionalPlayer
               type="member1"
+              player={this.state.players['member1']}
               OnClick={() => this.activate('member1')}
             />
             <AdditionalPlayer
               type="member2"
+              player={this.state.players['member2']}
               OnClick={() => this.activate('member2')}
             />
           </div>
           <Button text={'确认提交'} OnClick={() => this.handleSubmit()} />
         </div>
         <Form
+          className="form-result-pop"
           schema={schema}
           inVisible={this.state.showForm}
           player={player}
@@ -145,7 +155,7 @@ export class ResultPage extends Component {
   }
 }
 
-const AdditionalPlayer = ({ type, OnClick }) => {
+const AdditionalPlayer = ({ player, type, OnClick }) => {
   const playerStyle = classNames(
     'additional-player-bar',
     `additional-player-bar-${type}`
@@ -153,10 +163,14 @@ const AdditionalPlayer = ({ type, OnClick }) => {
   return (
     <div className={playerStyle} onTouchTap={() => OnClick()}>
       <ul>
-        <li>姓名：</li>
-        <li>联系方式</li>
-        <li />
-        <li />
+        {Object.keys(schema).map((key, index) => {
+          const item = schema[key]
+          return (
+            <li key={index}>
+              {item.label}：{player[key]}
+            </li>
+          )
+        })}
       </ul>
     </div>
   )
