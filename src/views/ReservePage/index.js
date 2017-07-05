@@ -117,14 +117,27 @@ export class ReservePage extends Component {
   render() {
     const { players, activePlayer } = this.state
     const player = players[activePlayer]
+    console.log(player)
     return (
       <div className="page-reserve page-container">
         <Logo />
         <div className="reserve-form">
           <div className="players-list">
-            <Player type="captain" OnClick={() => this.activate('captain')} />
-            <Player type="member1" OnClick={() => this.activate('member1')} />
-            <Player type="member2" OnClick={() => this.activate('member2')} />
+            <Player
+              player={players['captain']}
+              type="captain"
+              OnClick={() => this.activate('captain')}
+            />
+            <Player
+              player={players['member1']}
+              type="member1"
+              OnClick={() => this.activate('member1')}
+            />
+            <Player
+              player={players['member2']}
+              type="member2"
+              OnClick={() => this.activate('member2')}
+            />
           </div>
           <p>每个报名团体可以接受1-3人的报名</p>
           <Button text={'提交信息'} OnClick={() => this.handleSubmit()} />

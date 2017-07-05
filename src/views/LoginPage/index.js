@@ -6,7 +6,7 @@ import { Tick, Logo, Button } from '../../components'
 import { isMobile } from '../../utils'
 import './style.styl'
 
-export class ResultPage extends Component {
+class LoginPage extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -75,7 +75,7 @@ export class ResultPage extends Component {
   render() {
     const { mobile, code, showTick } = this.state
     return (
-      <div className="page-result page-container">
+      <div className="page-login page-container">
         <Logo />
         <Title />
         <SubTitle />
@@ -126,4 +126,4 @@ export default connect(
   state => ({}),
   dispatch =>
     bindActionCreators({ LoadResult, getSmsCode, addStackMessage }, dispatch)
-)(ResultPage)
+)(LoginPage)

@@ -3,20 +3,22 @@ import PropTypes from 'prop-types'
 import classNames from 'classnames'
 import './style.styl'
 
-const Player = ({ type, OnClick }) => {
+const Player = ({ player, type, OnClick, canClose }) => {
   const playerStyle = classNames('player-bar', `player-bar-${type}`)
-  const statusIcon = status === 'create' ? 'icon-add' : 'icon-close'
+  const statusIcon = player && player.name ? 'btn icon-edit' : 'btn icon-add'
   const imgWidth =
     type === 'captain' ? '1.51rem' : type === 'member1' ? '1.98rem' : '2.09rem'
   return (
-    <div className={playerStyle}>
+    <div className={playerStyle} onTouchTap={OnClick}>
       <span className="icon-man" />
       <img
         style={{ width: imgWidth, height: '.58rem' }}
         src={require(`../../assets/images/text-player-${type}.png`)}
         alt=""
       />
-      <span className={statusIcon} onTouchTap={OnClick} />
+      {canClose
+        ? <span className="btn icon-close" />
+        : <span className={statusIcon} />}
     </div>
   )
 }
@@ -24,6 +26,8 @@ const Player = ({ type, OnClick }) => {
 Player.propTypes = {
   type: PropTypes.string,
   OnClick: PropTypes.func,
+  player: PropTypes.object,
+  canClose: PropTypes.bool,
 }
 
 export default Player

@@ -22,7 +22,7 @@ class Form extends Component {
     })
     return (
       <div className={FormStyles}>
-        <Player type={type} OnClick={() => OnClose()} />
+        <Player canClose type={type} OnClick={() => OnClose()} />
         <div className="context">
           <ul>
             {Object.keys(schema).map((key, index) => {
