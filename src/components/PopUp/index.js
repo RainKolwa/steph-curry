@@ -5,7 +5,7 @@ import './style.styl'
 
 class PopUp extends React.Component {
   render() {
-    const { inVision, onHide } = this.props || { inVision: false }
+    const { inVision, onHide, closeBtn } = this.props || { inVision: false }
     const containerStyle = classNames({
       'page-container': true,
       'page-popup': true,
@@ -14,15 +14,16 @@ class PopUp extends React.Component {
     return (
       <div className={containerStyle}>
         {this.props.children}
-        <span onTouchTap={() => onHide()}>x</span>
+        {closeBtn && <span onTouchTap={() => onHide()}>x</span>}
       </div>
     )
   }
 }
 
 PopUp.propTypes = {
+  closeBtn: PropTypes.bool,
   inVision: PropTypes.bool,
-  onHide: PropTypes.func.isRequired,
+  onHide: PropTypes.func,
 }
 
 export default PopUp

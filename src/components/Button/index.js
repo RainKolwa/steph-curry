@@ -9,7 +9,7 @@ const mapTextToImage = text => {
       // eslint-disable-next-line
       break
     case '确认提交':
-      return 'btn-txt-confirm-submit.png'
+      return 'btn-txt-confirm-submit'
       // eslint-disable-next-line
       break
     case '确认查询':

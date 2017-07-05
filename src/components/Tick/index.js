@@ -30,7 +30,7 @@ export default class Tick extends Component {
   render() {
     return (
       <button className="sms">
-        {this.state.count}s
+        重新获取{this.state.count}
       </button>
     )
   }

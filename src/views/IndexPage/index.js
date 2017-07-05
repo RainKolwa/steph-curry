@@ -1,10 +1,34 @@
 import React, { Component } from 'react'
-import { Logo, Button } from '../../components'
+import PropTypes from 'prop-types'
+import { Logo, Button, PopUp, About } from '../../components'
 import './style.styl'
 
 class IndexPage extends Component {
+  static contextTypes = {
+    router: PropTypes.object.isRequired,
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      showPopUp: false,
+    }
+  }
+
+  show = () => {
+    this.setState({
+      showPopUp: true,
+    })
+  }
+
+  handleHide = () => {
+    this.setState({
+      showPopUp: false,
+    })
+  }
+
   handleClick = () => {
-    console.log('show detail')
+    this.show()
   }
 
   render() {
@@ -13,7 +37,7 @@ class IndexPage extends Component {
         <Logo />
         <Title />
         <SubTitle />
-        <ul>
+        <ul className="info">
           <li>
             <span className="icon-basketball" />
             2017 Jr. NBA夏令营-库里训练日
@@ -32,15 +56,20 @@ class IndexPage extends Component {
           </li>
         </ul>
         <div className="entry">
-          <Button text={'前往预约'} OnClick={() => this.handleClick()}>
-            前往预约
-          </Button>
+          <Button text={'前往预约'} OnClick={() => this.handleClick()} />
           <div className="total">
             目前已<span>1</span>
             <span>1</span>
             <span>1</span>人报名
           </div>
         </div>
+        <PopUp
+          closeBtn={false}
+          inVision={this.state.showPopUp}
+          onHide={this.handleHide}
+        >
+          <About />
+        </PopUp>
       </div>
     )
   }

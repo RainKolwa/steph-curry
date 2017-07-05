@@ -58,6 +58,28 @@ export const LoadResult = data => dispatch => {
   return dispatch(fetchResult(data))
 }
 
+// 补充信息
+export const SUBMIT_ADDITIONAL_REQUEST = 'SUBMIT_ADDITIONAL_REQUEST'
+export const SUBMIT_ADDITIONAL_SUCCESS = 'SUBMIT_ADDITIONAL_SUCCESS'
+export const SUBMIT_ADDITIONAL_FAILURE = 'SUBMIT_ADDITIONAL_FAILURE'
+
+const handleSubmitAdditional = data => ({
+  [LAUNCH_API]: {
+    types: [
+      SUBMIT_ADDITIONAL_REQUEST,
+      SUBMIT_ADDITIONAL_SUCCESS,
+      SUBMIT_ADDITIONAL_FAILURE,
+    ],
+    endpoint: 'reserve',
+    method: 'post',
+    data: data,
+  },
+})
+
+export const submitAdditional = data => dispatch => {
+  return dispatch(handleSubmitAdditional(data))
+}
+
 // 提示信息
 export const REMOVE_SNACK_MESSAGE = 'REMOVE_SNACK_MESSAGE'
 export const ADD_SNACK_MESSAGE = 'ADD_SNACK_MESSAGE'
