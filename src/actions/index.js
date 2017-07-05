@@ -1,4 +1,26 @@
 import { LAUNCH_API } from '../middleware/launch'
+import { isWechat } from '../utils'
+
+// 参与人数
+export const LOAD_PARTICIPANTS_REQUEST = 'LOAD_PARTICIPANTS_REQUEST'
+export const LOAD_PARTICIPANTS_SUCCESS = 'LOAD_PARTICIPANTS_SUCCESS'
+export const LOAD_PARTICIPANTS_FAILURE = 'LOAD_PARTICIPANTS_FAILURE'
+
+const fetchParticipants = () => ({
+  [LAUNCH_API]: {
+    types: [
+      LOAD_PARTICIPANTS_REQUEST,
+      LOAD_PARTICIPANTS_SUCCESS,
+      LOAD_PARTICIPANTS_FAILURE,
+    ],
+    endpoint: '?act=ordercount',
+    method: 'get',
+  },
+})
+
+export const loadParticipants = () => dispatch => {
+  return dispatch(fetchParticipants())
+}
 
 // 预约
 export const SUBMIT_RESERVE_REQUEST = 'SUBMIT_RESERVE_REQUEST'
@@ -12,9 +34,12 @@ const handleSubmitReservation = data => ({
       SUBMIT_RESERVE_SUCCESS,
       SUBMIT_RESERVE_FAILURE,
     ],
-    endpoint: 'reserve',
+    endpoint: '?act=order',
     method: 'post',
-    data: data,
+    data: {
+      ...{ plat: isWechat() ? 'wx' : 'wb' },
+      ...data,
+    },
   },
 })
 

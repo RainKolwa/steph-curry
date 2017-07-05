@@ -1,6 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import { loadParticipants } from '../../actions'
 import { Logo, Button, PopUp, About } from '../../components'
+import get from 'lodash/get'
 import './style.styl'
 
 class IndexPage extends Component {
@@ -12,7 +16,20 @@ class IndexPage extends Component {
     super(props)
     this.state = {
       showPopUp: false,
+      count: 0,
     }
+  }
+
+  componentDidMount() {
+    this.load()
+  }
+
+  load = async () => {
+    const res = await this.props.loadParticipants()
+    const count = get(res, 'response.data', 0)
+    this.setState({
+      count: count,
+    })
   }
 
   show = () => {
@@ -32,6 +49,8 @@ class IndexPage extends Component {
   }
 
   render() {
+    const { count } = this.state
+    const numbers = count.toString().split('')
     return (
       <div className="page-home page-container">
         <Logo />
@@ -58,9 +77,12 @@ class IndexPage extends Component {
         <div className="entry">
           <Button text={'前往预约'} OnClick={() => this.handleClick()} />
           <div className="total">
-            目前已<span>1</span>
-            <span>1</span>
-            <span>1</span>人报名
+            目前已
+            {numbers.map((number, index) =>
+              <span key={index}>
+                {number}
+              </span>
+            )}人报名
           </div>
         </div>
         <PopUp
@@ -83,4 +105,7 @@ const SubTitle = () => {
   return <div className="subtitle" />
 }
 
-export default IndexPage
+export default connect(
+  state => ({}),
+  dispatch => bindActionCreators({ loadParticipants }, dispatch)
+)(IndexPage)

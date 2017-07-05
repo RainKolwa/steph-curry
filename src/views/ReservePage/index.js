@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 import { submitReservation } from '../../actions'
 import { PopUp, Logo, Button, Follow, Player, Form } from '../../components'
+import get from 'lodash/get'
 import './style.styl'
 
 const schema = {
@@ -64,10 +65,13 @@ export class ReservePage extends Component {
     }
   }
 
-  handleSubmit = () => {
-    console.log('submiting')
-    console.log(this.state.players)
-    this.showFollow()
+  handleSubmit = async () => {
+    const { players } = this.state
+    const res = await this.props.submitReservation(players)
+    const code = get(res, 'response.code', null)
+    if (code === '0') {
+      this.showFollow()
+    }
   }
 
   showForm = () => {
